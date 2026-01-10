@@ -1,0 +1,634 @@
+/* ===================================
+   Responsive & Smooth Scroll CSS
+   Mobile-First Design System
+   =================================== */
+
+/* Enhanced Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+    /* Account for fixed navbar */
+    -webkit-overflow-scrolling: touch;
+    /* Smooth momentum scrolling on iOS */
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Prevent horizontal overflow */
+body {
+    overflow-x: hidden;
+    min-height: 100vh;
+    min-height: 100dvh;
+    /* Dynamic viewport height for mobile */
+}
+
+/* ===================================
+   Container Responsive Widths
+   =================================== */
+.container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 12px;
+    }
+}
+
+/* ===================================
+   Section Padding Responsive
+   =================================== */
+.section {
+    padding: var(--section-padding) 0;
+}
+
+@media (max-width: 1024px) {
+    :root {
+        --section-padding: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --section-padding: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --section-padding: 60px;
+    }
+}
+
+/* ===================================
+   Typography Responsive
+   =================================== */
+.section-title {
+    font-size: clamp(28px, 5vw, 48px);
+}
+
+.section-subtitle {
+    font-size: clamp(14px, 2vw, 18px);
+}
+
+/* ===================================
+   Navbar Responsive
+   =================================== */
+@media (max-width: 968px) {
+    .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: rgba(3, 3, 3, 0.98);
+        backdrop-filter: blur(20px);
+        padding: 24px;
+        flex-direction: column;
+        gap: 16px;
+        border-bottom: 1px solid var(--border-color);
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s var(--ease-out-expo);
+    }
+
+    .nav-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .nav-link {
+        font-size: 16px;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        padding: 8px;
+        cursor: pointer;
+    }
+
+    .mobile-menu-btn span {
+        width: 24px;
+        height: 2px;
+        background: var(--text-primary);
+        border-radius: 2px;
+        transition: all 0.3s ease;
+    }
+}
+
+@media (min-width: 969px) {
+    .mobile-menu-btn {
+        display: none;
+    }
+}
+
+/* ===================================
+   Hero Section Responsive
+   =================================== */
+@media (max-width: 1024px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .hero-visual {
+        order: -1;
+    }
+
+    .hero-cta {
+        justify-content: center;
+    }
+
+    .hero-stats {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 100px 16px 60px;
+        min-height: auto;
+    }
+
+    .title-name {
+        font-size: clamp(32px, 8vw, 48px);
+    }
+
+    .hero-description {
+        font-size: 14px;
+    }
+
+    .hero-cta {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .hero-cta .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hero-stats {
+        gap: 24px;
+    }
+
+    .stat-number {
+        font-size: 28px;
+    }
+
+    .profile-card {
+        transform: scale(0.85);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 80px 12px 40px;
+    }
+
+    .title-line {
+        font-size: 16px;
+    }
+
+    .title-name {
+        font-size: 28px;
+    }
+
+    .hero-stats {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .stat-item {
+        flex: 1 1 30%;
+        min-width: 80px;
+    }
+}
+
+/* ===================================
+   About Section Responsive
+   =================================== */
+@media (max-width: 968px) {
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .about-text {
+        text-align: center;
+    }
+
+    .about-description {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .values-grid {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .skill-bubble {
+        padding: 8px 14px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .skills-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* ===================================
+   Projects Section Responsive
+   =================================== */
+@media (max-width: 1200px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .project-card.featured {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .project-card.featured {
+        grid-column: span 1;
+    }
+
+    .project-card {
+        padding: 20px;
+    }
+
+    .project-title {
+        font-size: 1.2rem;
+    }
+
+    .project-preview-window {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-card {
+        padding: 16px;
+    }
+
+    .project-icon-wrap {
+        width: 48px;
+        height: 48px;
+    }
+
+    .project-icon {
+        font-size: 24px;
+    }
+
+    .try-demo-btn {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+}
+
+/* ===================================
+   Experience Section Responsive
+   =================================== */
+@media (max-width: 768px) {
+    .timeline {
+        padding-left: 30px;
+    }
+
+    .timeline::before {
+        left: 0;
+    }
+
+    .timeline-item::before {
+        left: -30px;
+    }
+
+    .exp-card {
+        padding: 20px;
+    }
+
+    .exp-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .exp-company-logo {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* ===================================
+   Education Section Responsive
+   =================================== */
+@media (max-width: 968px) {
+    .edu-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .edu-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .edu-card {
+        padding: 20px;
+    }
+}
+
+/* ===================================
+   Certifications Responsive
+   =================================== */
+@media (max-width: 1024px) {
+    .cert-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .cert-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cert-card {
+        padding: 16px;
+    }
+}
+
+/* ===================================
+   Contact Section Responsive
+   =================================== */
+@media (max-width: 968px) {
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .contact-info {
+        order: 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-form {
+        padding: 20px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 14px 16px;
+    }
+}
+
+/* ===================================
+   Footer Responsive
+   =================================== */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        gap: 24px;
+        text-align: center;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+}
+
+/* ===================================
+   Chatbot Responsive
+   =================================== */
+@media (max-width: 480px) {
+    .chatbot-container {
+        width: calc(100vw - 24px);
+        right: 12px;
+        bottom: 80px;
+        max-height: 70vh;
+    }
+
+    .chatbot-toggle {
+        width: 50px;
+        height: 50px;
+        right: 12px;
+        bottom: 12px;
+    }
+}
+
+/* ===================================
+   Buttons Responsive
+   =================================== */
+@media (max-width: 768px) {
+    .btn {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+
+    .btn-primary {
+        padding: 14px 28px;
+    }
+}
+
+/* ===================================
+   Touch Device Optimizations
+   =================================== */
+@media (hover: none) and (pointer: coarse) {
+
+    /* Remove hover effects on touch devices */
+    .project-card:hover,
+    .glass-card:hover,
+    .skill-bubble:hover {
+        transform: none;
+    }
+
+    /* Larger touch targets */
+    .nav-link {
+        padding: 12px 16px;
+    }
+
+    .btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    /* Disable custom cursor on mobile */
+    .custom-cursor,
+    .cursor-follower {
+        display: none !important;
+    }
+}
+
+/* ===================================
+   High DPI / Retina Displays
+   =================================== */
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+
+    .profile-photo,
+    .modal-image-container img {
+        image-rendering: -webkit-optimize-contrast;
+    }
+}
+
+/* ===================================
+   Landscape Mobile
+   =================================== */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding: 60px 24px 40px;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .hero-stats {
+        flex-direction: row;
+    }
+}
+
+/* ===================================
+   Large Screens / 4K
+   =================================== */
+@media (min-width: 1920px) {
+    html {
+        font-size: 18px;
+    }
+
+    .container {
+        max-width: 1400px;
+    }
+}
+
+@media (min-width: 2560px) {
+    html {
+        font-size: 20px;
+    }
+
+    .container {
+        max-width: 1600px;
+    }
+}
+
+/* ===================================
+   Print Styles
+   =================================== */
+@media print {
+
+    .navbar,
+    .chatbot-toggle,
+    .chatbot-container,
+    .custom-cursor,
+    .cursor-follower,
+    .scroll-progress-container,
+    .transformer-bg {
+        display: none !important;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 40px 20px;
+    }
+
+    .project-card,
+    .glass-card {
+        break-inside: avoid;
+    }
+}
+
+/* ===================================
+   Safari-Specific Fixes
+   =================================== */
+@supports (-webkit-touch-callout: none) {
+
+    /* iOS Safari smooth scroll fix */
+    body {
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Safe area insets for notched devices */
+    .navbar {
+        padding-top: env(safe-area-inset-top);
+    }
+
+    .chatbot-toggle {
+        bottom: calc(16px + env(safe-area-inset-bottom));
+    }
+}
+
+/* ===================================
+   Smooth Scroll Performance
+   =================================== */
+.reveal,
+.project-card,
+.glass-card,
+.skill-bubble,
+.exp-card,
+.edu-card,
+.cert-card {
+    will-change: transform, opacity;
+}
+
+/* Reduce will-change after animation */
+.reveal.visible,
+.visible .project-card,
+.visible .glass-card {
+    will-change: auto;
+}
+
+/* Hardware acceleration for smooth scroll */
+.app {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
