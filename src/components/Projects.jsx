@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useScrollReveal } from '../hooks/useAnimations';
 import AnimatedSection from './AnimatedSection';
 import './Projects.css';
@@ -597,12 +598,12 @@ function Projects() {
 
                             {/* Try Demo Button */}
                             {project.hasDemo && (
-                                <a href={`#demo-${project.id}`} className="try-demo-btn">
+                                <Link to={`/demos#${project.id}`} className="try-demo-btn">
                                     <span>Try Demo</span>
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                         <path d="M5 12h14M12 5l7 7-7 7" />
                                     </svg>
-                                </a>
+                                </Link>
                             )}
                         </div>
                     ))}

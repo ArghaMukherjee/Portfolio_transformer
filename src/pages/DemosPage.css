@@ -1,0 +1,90 @@
+/* Demos Page Styles */
+.demos-page {
+    min-height: 100vh;
+    background: var(--bg-primary, #0a0a0f);
+    position: relative;
+}
+
+.demos-main {
+    padding-top: 100px;
+    min-height: calc(100vh - 80px);
+}
+
+/* Navigation */
+.demos-nav {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem 2rem;
+}
+
+.back-home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.back-home-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    transform: translateX(-5px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.back-home-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.back-home-btn:hover svg {
+    transform: translateX(-3px);
+}
+
+/* Page Header Enhancement */
+.demos-page .section-header {
+    margin-bottom: 3rem;
+}
+
+.demos-page .section-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    background: linear-gradient(135deg, #fff 0%, #a0a0ff 50%, #7c3aed 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .demos-main {
+        padding-top: 80px;
+    }
+
+    .demos-nav {
+        padding: 0 1rem 1.5rem;
+    }
+
+    .back-home-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .back-home-btn span {
+        display: none;
+    }
+
+    .back-home-btn {
+        padding: 0.6rem;
+        border-radius: 50%;
+    }
+}

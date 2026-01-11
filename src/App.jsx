@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -15,6 +16,7 @@ import CustomCursor from './components/CustomCursor';
 import Chatbot from './components/Chatbot';
 import Newsletter from './components/Newsletter';
 import TransformerBackground from './components/TransformerBackground';
+import DemosPage from './pages/DemosPage';
 
 // Import credential images
 import ljmuCert from './assets/credentials/ljmu-certificate.png';
@@ -31,10 +33,8 @@ import './styles/experience.css';
 import './styles/transformer.css';
 import './styles/responsive.css';
 
-function App() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalImage, setModalImage] = useState('');
-  const [modalTitle, setModalTitle] = useState('');
+// Home Page Component
+function HomePage({ onViewCredential }) {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -49,6 +49,34 @@ function App() {
     // Trigger page load animation
     setTimeout(() => setIsLoaded(true), 100);
   }, []);
+
+  return (
+    <div className={`app ${isLoaded ? 'loaded' : ''}`}>
+      <CustomCursor />
+      <TransformerBackground />
+      <ScrollProgress />
+      <Navbar />
+      <main>
+        <Hero />
+        <About />
+        <Experience />
+        <Education onViewCredential={onViewCredential} />
+        <Projects />
+        <Certifications />
+        <Testimonials />
+        <Contact />
+        <Newsletter />
+      </main>
+      <Footer />
+      <Chatbot />
+    </div>
+  );
+}
+
+function App() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalImage, setModalImage] = useState('');
+  const [modalTitle, setModalTitle] = useState('');
 
   const credentialImages = {
     'ljmu-certificate.png': ljmuCert,
@@ -69,31 +97,19 @@ function App() {
   };
 
   return (
-    <div className={`app ${isLoaded ? 'loaded' : ''}`}>
-      <CustomCursor />
-      <TransformerBackground />
-      <ScrollProgress />
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Experience />
-        <Education onViewCredential={handleViewCredential} />
-        <Projects />
-        <Certifications />
-        <Testimonials />
-        <Contact />
-        <Newsletter />
-      </main>
-      <Footer />
+    <>
+      <Routes>
+        <Route path="/" element={<HomePage onViewCredential={handleViewCredential} />} />
+        <Route path="/demos" element={<DemosPage />} />
+      </Routes>
+
       <CredentialModal
         isOpen={modalOpen}
         imageSrc={modalImage}
         title={modalTitle}
         onClose={handleCloseModal}
       />
-      <Chatbot />
-    </div>
+    </>
   );
 }
 

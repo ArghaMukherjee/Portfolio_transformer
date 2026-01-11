@@ -1,5 +1,28 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './AIDemos.css';
+
+// Demo ID mapping from Projects.jsx IDs to AIDemos IDs
+const projectToDemoMapping = {
+    // AI/ML Projects
+    'vehicle-detection': 'image-gen',
+    'healthcare-nlp': 'doc-intel',
+    'analytics-dashboard': 'data-agent',
+    'conversational-ai': 'text-gen',
+    'document-ai': 'doc-intel',
+    'image-generation': 'image-gen',
+    'sentiment-demo': 'text-gen',
+    // Game demos don't have corresponding AIDemos, show text-gen as default
+    'ai-snake': 'code-assist',
+    'ai-tictactoe': 'code-assist',
+    'memory-match': 'code-assist',
+    'ai-pong': 'code-assist',
+    'parking-simulator': 'code-assist',
+    'driving-practice': 'code-assist',
+    'chess-ai': 'code-assist',
+    'maze-runner': 'code-assist',
+    'tower-defense': 'code-assist',
+    'space-shooter': 'code-assist',
+};
 
 const demos = [
     {
@@ -101,6 +124,45 @@ const demos = [
 
 function AIDemos() {
     const [activeDemo, setActiveDemo] = useState(demos[0]);
+
+    // Handle hash-based demo selection
+    useEffect(() => {
+        const handleSelectDemo = (event) => {
+            const { demoId } = event.detail;
+            // Try direct match first
+            let demo = demos.find(d => d.id === demoId);
+
+            // If no direct match, try project-to-demo mapping
+            if (!demo && projectToDemoMapping[demoId]) {
+                demo = demos.find(d => d.id === projectToDemoMapping[demoId]);
+            }
+
+            if (demo) {
+                setActiveDemo(demo);
+            }
+        };
+
+        // Listen for custom event from DemosPage
+        window.addEventListener('selectDemo', handleSelectDemo);
+
+        // Check URL hash on mount
+        const hash = window.location.hash.replace('#', '');
+        if (hash) {
+            // Try direct match
+            let demo = demos.find(d => d.id === hash);
+            // Try mapping
+            if (!demo && projectToDemoMapping[hash]) {
+                demo = demos.find(d => d.id === projectToDemoMapping[hash]);
+            }
+            if (demo) {
+                setActiveDemo(demo);
+            }
+        }
+
+        return () => {
+            window.removeEventListener('selectDemo', handleSelectDemo);
+        };
+    }, []);
 
     const renderPreview = (preview) => {
         switch (preview.type) {
