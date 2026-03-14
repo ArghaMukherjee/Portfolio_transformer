@@ -1,11 +1,6 @@
 function Certifications() {
     const certifications = [
-        {
-            icon: '🧠',
-            title: 'Deep Learning Specialization',
-            issuer: 'deeplearning.ai',
-            description: 'Comprehensive deep learning certification covering neural networks, CNNs, RNNs, and sequence models.',
-        },
+
         {
             icon: '💬',
             title: 'Natural Language Processing',
@@ -18,18 +13,7 @@ function Certifications() {
             issuer: 'Microsoft',
             description: 'Microsoft certified in AI fundamentals, covering Azure AI services and machine learning concepts.',
         },
-        {
-            icon: '🔬',
-            title: 'TensorFlow Developer',
-            issuer: 'Google',
-            description: 'Professional certification in building and training neural networks using TensorFlow.',
-        },
-        {
-            icon: '📈',
-            title: 'Data Science Professional',
-            issuer: 'IBM',
-            description: 'Comprehensive data science certification covering the entire ML pipeline.',
-        },
+
         {
             icon: '🎓',
             title: 'Machine Learning Engineering',

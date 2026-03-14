@@ -268,6 +268,89 @@ function Projects() {
                 score: 0.94
             }
         },
+        // Telemetry Demo Section
+        {
+            id: 'telemetry-demo',
+            icon: '🛡️',
+            title: 'Secure Telemetry Pipeline',
+            tagline: 'Track. Redact. Observe.',
+            description: 'End-to-end on-prem system for agent telemetry, featuring real-time PII redaction and full execution tracing via Langfuse.',
+            tags: ['Docker', 'Langfuse', 'Presidio', 'Security', 'Telemetry'],
+            featured: true,
+            hasDemo: true,
+            demoType: 'telemetry',
+            preview: {
+                type: 'telemetry',
+                logs: [
+                    { time: '10:45:01', msg: 'Processing text...', status: 'info' },
+                    { time: '10:45:02', msg: 'PII "John Doe" redacted -> [PERSON]', status: 'warn' },
+                    { time: '10:45:02', msg: 'Trace successfully synced to Langfuse', status: 'success' }
+                ]
+            }
+        },
+        // Agentic AI Demos
+        {
+            id: 'agentic-research',
+            icon: '🔍',
+            title: 'Autonomous Research Agent',
+            tagline: 'Search. Compile. Output.',
+            description: 'A multi-step agent that browses the web autonomously, extracts information, and synthesizes comprehensive research reports.',
+            tags: ['Agentic AI', 'Web Search', 'Data Synthesis', 'Autonomous'],
+            featured: true,
+            hasDemo: true,
+            demoType: 'agent-research',
+            preview: {
+                type: 'agent-research',
+                steps: ['Querying Google...', 'Reading 3 sources...', 'Extracting data...', 'Formatting report...']
+            }
+        },
+        {
+            id: 'agentic-coder',
+            icon: '⌨️',
+            title: 'Auto-Coding Engineer Agent',
+            tagline: 'Plan. Write. Debug.',
+            description: 'An AI engineer that writes, executes, and fixes code in a sandboxed environment based on natural language requirements.',
+            tags: ['Agentic AI', 'Code Generation', 'Execution Sandbox', 'Dev Tool'],
+            featured: true,
+            hasDemo: true,
+            demoType: 'agent-coder',
+            preview: {
+                type: 'agent-coder',
+                tasks: [
+                    { t: 'Understand requirements', d: true },
+                    { t: 'Write python script', d: true },
+                    { t: 'Test output', d: false }
+                ]
+            }
+        },
+        {
+            id: 'agentic-orchestrator',
+            icon: '🤝',
+            title: 'Multi-Agent Orchestrator',
+            tagline: 'Collaborate. Verify. Deliver.',
+            description: 'A sovereign system where specialized LLM agents (e.g., Researcher, Writer, Reviewer) collaborate to solve complex, compound tasks.',
+            tags: ['Agentic AI', 'Multi-Agent', 'Orchestration', 'LLM Agents'],
+            hasDemo: true,
+            demoType: 'agent-orchestrator',
+            preview: {
+                type: 'agent-orchestrator',
+                agents: ['Researcher', 'Reviewer', 'Writer']
+            }
+        },
+        {
+            id: 'agentic-support',
+            icon: '🛠️',
+            title: 'Autonomous Support Resolver',
+            tagline: 'Understand. Act. Resolve.',
+            description: 'Unlike basic chatbots, this agent takes real actions (like processing refunds or querying a DB) to autonomously resolve tickets.',
+            tags: ['Agentic AI', 'Action Calling', 'Support', 'Automation'],
+            hasDemo: true,
+            demoType: 'agent-support',
+            preview: {
+                type: 'agent-support',
+                actions: ['Check Order #1024', 'Verify Shipping', 'Issue Partial Refund']
+            }
+        },
     ];
 
     const renderPreview = (project) => {
@@ -525,6 +608,72 @@ function Projects() {
                             <span className="sentiment-label">{preview.sentiment}</span>
                             <span className="sentiment-score">{(preview.score * 100).toFixed(0)}%</span>
                         </div>
+                    </div>
+                );
+            case 'telemetry':
+                return (
+                    <div className="preview-telemetry" style={{ padding: '1rem', background: '#0a0a0f', borderRadius: '8px', border: '1px solid rgba(139, 92, 246, 0.2)', width: '100%' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem', gap: '0.5rem' }}>
+                            <span style={{ color: '#00D1FF' }}>⚙️</span> 
+                            <span style={{ fontSize: '0.8rem', color: '#9CA3AF', fontWeight: 'bold' }}>TELEMETRY LOGS</span>
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', fontFamily: 'monospace', fontSize: '0.75rem' }}>
+                            {preview.logs.map((log, i) => (
+                                <div key={i} style={{ display: 'flex', gap: '0.5rem', opacity: i === 2 ? 1 : 0.7 }}>
+                                    <span style={{ color: '#6B7280' }}>[{log.time}]</span>
+                                    <span style={{ color: log.status === 'success' ? '#10B981' : log.status === 'warn' ? '#FBBF24' : '#60A5FA' }}>
+                                        {log.msg}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+                        <div style={{ marginTop: '1rem', padding: '0.5rem', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '4px', borderLeft: '3px solid #10B981' }}>
+                            <span style={{ fontSize: '0.7rem', color: '#10B981' }}>STATUS: ACTIVE • TRACING CONNECTED</span>
+                        </div>
+                    </div>
+                );
+            case 'agent-research':
+                return (
+                    <div className="preview-agent" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', background: '#111827', padding: '1rem', borderRadius: '8px', border: '1px solid #374151' }}>
+                        <div style={{ fontSize: '0.8rem', color: '#9CA3AF', marginBottom: '0.5rem' }}>Agent Steps:</div>
+                        {preview.steps.map((step, i) => (
+                            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.75rem', color: i === preview.steps.length -1 ? '#10B981' : '#E5E7EB' }}>
+                                <span>{i === preview.steps.length - 1 ? '✨' : '🔄'}</span> {step}
+                            </div>
+                        ))}
+                    </div>
+                );
+            case 'agent-coder':
+                return (
+                    <div className="preview-agent" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', background: '#111827', padding: '1rem', borderRadius: '8px', border: '1px solid #374151', fontFamily: 'monospace' }}>
+                        <div style={{ fontSize: '0.8rem', color: '#8B5CF6', marginBottom: '0.5rem' }}>$ DEV_AGENT --RUN</div>
+                        {preview.tasks.map((task, i) => (
+                            <div key={i} style={{ fontSize: '0.75rem', color: task.d ? '#10B981' : '#FBBF24' }}>
+                                [{task.d ? '✓' : '...'}] {task.t}
+                            </div>
+                        ))}
+                    </div>
+                );
+            case 'agent-orchestrator':
+                return (
+                    <div className="preview-agent" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem', background: '#111827', padding: '1.5rem', borderRadius: '8px', border: '1px solid #374151' }}>
+                        {preview.agents.map((agent, i) => (
+                            <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.3rem' }}>
+                                <div style={{ width: '30px', height: '30px', borderRadius: '50%', background: '#3B82F6', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px' }}>🤖</div>
+                                <span style={{ fontSize: '0.6rem', color: '#9CA3AF' }}>{agent}</span>
+                            </div>
+                        ))}
+                    </div>
+                );
+            case 'agent-support':
+                return (
+                    <div className="preview-agent" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', background: '#111827', padding: '1rem', borderRadius: '8px', border: '1px solid #374151' }}>
+                        <div style={{ fontSize: '0.75rem', color: '#60A5FA', borderBottom: '1px solid #1F2937', paddingBottom: '0.4rem', marginBottom: '0.2rem' }}>Calling Actions...</div>
+                        {preview.actions.map((act, i) => (
+                            <div key={i} style={{ fontSize: '0.7rem', color: '#D1D5DB', background: '#1F2937', padding: '0.3rem 0.5rem', borderRadius: '4px' }}>
+                                ⚡ {act}
+                            </div>
+                        ))}
                     </div>
                 );
             default:

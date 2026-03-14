@@ -38,11 +38,11 @@ function Chatbot() {
         },
         projects: {
             patterns: ['projects', 'portfolio', 'work samples', 'built', 'created'],
-            response: "Argha has worked on 50+ projects including:\n\n🚗 Autonomous Vehicle Detection (95% accuracy)\n🏥 Healthcare NLP Platform\n📊 Predictive Analytics Dashboard\n🤖 Conversational AI Assistant (10K+ daily conversations)"
+            response: "Argha has worked on 50+ projects including:\n\n🔍 Autonomous Research Agent\n⌨️ Auto-Coding Engineer Agent\n🤝 Multi-Agent Orchestrator\n🛠️ Autonomous Support Resolver\n🛡️ Secure On-Prem Telemetry Pipeline\n🚗 Autonomous Vehicle Detection (95% accuracy)\n🏥 Healthcare NLP Platform\n📊 Predictive Analytics Dashboard\n🤖 Conversational AI Assistant"
         },
         certifications: {
             patterns: ['certification', 'certificate', 'certified', 'credentials'],
-            response: "Argha holds 15+ certifications including:\n\n🧠 Deep Learning Specialization - deeplearning.ai\n💬 NLP Certification - Coursera\n☁️ Azure AI-900 - Microsoft\n🔬 TensorFlow Developer - Google\n📈 Data Science Professional - IBM"
+            response: "Argha holds 15+ certifications including:\n\n💬 NLP Certification - Coursera\n☁️ Azure AI-900 - Microsoft"
         },
         research: {
             patterns: ['research', 'phd', 'dba', 'thesis', 'doctoral'],
