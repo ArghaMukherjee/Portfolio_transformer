@@ -144,6 +144,75 @@ const demos = [
         },
         demoUrl: '#demo-telemetry'
     },
+    {
+        id: 'gen-ai-rag',
+        category: 'Document AI',
+        icon: '📚',
+        name: 'Enterprise RAG',
+        tagline: 'Retrieve. Contextualize. Answer.',
+        description: 'Retrieval-Augmented Generation system that combines the conversational ability of LLMs with your private knowledge base, complete with source citations.',
+        features: ['Semantic Search', 'Source Citations', 'Fact Checking'],
+        preview: {
+            type: 'chat',
+            messages: [
+                { role: 'user', text: 'What is the company policy on remote work?' },
+                { role: 'ai', text: 'Employees may work remotely up to 3 days per week, subject to manager approval.', citations: ['Employee_Handbook_2023.pdf (Page 14)'] }
+            ]
+        },
+        demoUrl: '#demo-gen-ai-rag'
+    },
+    {
+        id: 'code-quality',
+        category: 'Developer Tools',
+        icon: '✅',
+        name: 'Automated Review',
+        tagline: 'Format. Lint. Audit.',
+        description: 'Automated code review system that enforces styling, catches bugs, and audits dependencies in real-time pipelines.',
+        features: ['Static Analysis', 'Security Audits', 'Auto-formatting'],
+        preview: {
+            type: 'terminal',
+            lines: [
+                { text: '$ npm run lint && npm run test', color: '#a3e635' },
+                { text: '> Running ESLint...', color: '#9ca3af' },
+                { text: '✓ 0 errors, 0 warnings', color: '#22c55e' },
+                { text: '> Running vitest...', color: '#9ca3af' },
+                { text: '✓ 42 tests passed', color: '#22c55e' },
+                { text: '✨ All checks passed successfully.', color: '#60a5fa' }
+            ]
+        },
+        demoUrl: '#demo-code-quality'
+    },
+    {
+        id: 'mlops-platform',
+        category: 'MLOps',
+        icon: '⚙️',
+        name: 'MLOps Hub',
+        tagline: 'Train. Deploy. Monitor.',
+        description: 'End-to-end machine learning operations visualizing model training metrics, deployment pipelines, and production drift monitoring.',
+        features: ['Model Registry', 'Pipeline Tracking', 'Drift Detection'],
+        preview: {
+            type: 'mlops-dashboard',
+            metrics: [
+                { label: 'Accuracy', value: '98.2%', trend: '+0.4%' },
+                { label: 'Latency', value: '42ms', trend: '-5ms' },
+                { label: 'Data Drift', value: 'Low', color: '#22c55e' }
+            ]
+        },
+        demoUrl: '#demo-mlops'
+    },
+    {
+        id: 'video-analysis',
+        category: 'Computer Vision',
+        icon: '🎥',
+        name: 'Video Analytics',
+        tagline: 'Track. Recognize. Analyze.',
+        description: 'Process video streams in real-time to track objects, recognize actions, and extract text or metadata from frame sequences.',
+        features: ['Object Tracking', 'Action Recognition', 'Real-time Stats'],
+        preview: {
+            type: 'video-tracker'
+        },
+        demoUrl: '#demo-video-analysis'
+    },
     // Agentic AI Demos
     {
         id: 'agent-research-demo',
@@ -284,9 +353,16 @@ function AIDemos() {
                             </div>
                             <div className="preview-content">
                                 {preview.messages.map((msg, i) => (
-                                    <div key={i} className={`chat-message chat-message--${msg.role}`}>
-                                        <span className="chat-role">{msg.role === 'user' ? '👤' : '🤖'}</span>
-                                        <p>{msg.text}</p>
+                                    <div key={i} className={`chat-message chat-message--${msg.role}`} style={{ flexDirection: 'column', alignItems: msg.role === 'user' ? 'flex-end' : 'flex-start' }}>
+                                        <div style={{ display: 'flex', gap: '8px', alignItems: 'center', alignSelf: msg.role === 'user' ? 'flex-end' : 'flex-start' }}>
+                                            <span className="chat-role">{msg.role === 'user' ? '👤' : '🤖'}</span>
+                                            <p>{msg.text}</p>
+                                        </div>
+                                        {msg.citations && (
+                                            <div style={{ alignSelf: 'flex-start', marginLeft: '32px', fontSize: '11px', marginTop: '6px', color: '#10b981', background: 'rgba(16, 185, 129, 0.1)', padding: '2px 8px', borderRadius: '4px', borderLeft: '2px solid #10b981' }}>
+                                                📄 Source: {msg.citations[0]}
+                                            </div>
+                                        )}
                                     </div>
                                 ))}
                             </div>
@@ -463,6 +539,82 @@ function AIDemos() {
                                             {log.text}
                                         </div>
                                     ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                );
+            case 'terminal':
+                return (
+                    <div className="demo-preview demo-preview--terminal">
+                        <div className="preview-window" style={{ background: '#0a0a0a', border: '1px solid #333' }}>
+                            <div className="preview-header" style={{ borderBottom: '1px solid #222' }}>
+                                <div className="preview-dots">
+                                    <span style={{ background: '#ef4444' }}></span>
+                                    <span style={{ background: '#eab308' }}></span>
+                                    <span style={{ background: '#22c55e' }}></span>
+                                </div>
+                                <span className="preview-lang" style={{ color: '#aaa', fontSize: '12px' }}>bash</span>
+                            </div>
+                            <div className="preview-content" style={{ padding: '1.5rem', fontFamily: 'monospace', fontSize: '13px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                                {preview.lines.map((line, i) => (
+                                    <div key={i} style={{ color: line.color || '#e5e7eb', display: 'flex' }}>
+                                        {line.text}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                );
+            case 'mlops-dashboard':
+                return (
+                    <div className="demo-preview demo-preview--mlops">
+                        <div className="preview-window">
+                            <div className="preview-header">
+                                <div className="preview-dots">
+                                    <span></span><span></span><span></span>
+                                </div>
+                            </div>
+                            <div className="preview-content" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', padding: '1.5rem' }}>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem' }}>
+                                    {preview.metrics.map((metric, i) => (
+                                        <div key={i} style={{ background: 'rgba(255,255,255,0.05)', padding: '1rem', borderRadius: '8px', flex: 1, border: '1px solid rgba(255,255,255,0.1)' }}>
+                                            <div style={{ fontSize: '12px', color: '#9ca3af', marginBottom: '8px' }}>{metric.label}</div>
+                                            <div style={{ fontSize: '20px', fontWeight: 'bold', color: metric.color || '#fff' }}>{metric.value}</div>
+                                            {metric.trend && <div style={{ fontSize: '11px', color: '#10b981', marginTop: '4px' }}>{metric.trend} this week</div>}
+                                        </div>
+                                    ))}
+                                </div>
+                                <div style={{ height: '70px', background: 'linear-gradient(90deg, rgba(59,130,246,0.1) 0%, rgba(16,185,129,0.1) 100%)', borderRadius: '6px', border: '1px dashed #374151', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    <span style={{ color: '#9ca3af', fontSize: '12px' }}>● Live End-to-End Pipeline Activity</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                );
+            case 'video-tracker':
+                return (
+                    <div className="demo-preview demo-preview--video">
+                        <div className="preview-window">
+                            <div className="preview-header">
+                                <div className="preview-dots">
+                                    <span></span><span></span><span></span>
+                                </div>
+                            </div>
+                            <div className="preview-content" style={{ position: 'relative', background: '#111827', height: '240px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                                <div style={{ opacity: 0.3, fontSize: '64px', display: 'flex', gap: '3rem' }}>
+                                    <span>🚶‍♂️</span>
+                                    <span>🚗</span>
+                                    <span>🚴‍♀️</span>
+                                </div>
+                                <div style={{ position: 'absolute', border: '2px solid #3b82f6', width: '60px', height: '100px', left: '26%', top: '25%', borderRadius: '4px' }}>
+                                    <span style={{ background: '#3b82f6', color: '#fff', fontSize: '10px', padding: '2px 4px', position: 'absolute', top: '-18px', left: '-2px', whiteSpace: 'nowrap' }}>Person 92%</span>
+                                </div>
+                                <div style={{ position: 'absolute', border: '2px solid #10b981', width: '100px', height: '70px', left: '46%', top: '40%', borderRadius: '4px' }}>
+                                    <span style={{ background: '#10b981', color: '#000', fontSize: '10px', padding: '2px 4px', position: 'absolute', top: '-18px', left: '-2px', whiteSpace: 'nowrap', fontWeight: 'bold' }}>Vehicle 98%</span>
+                                </div>
+                                <div style={{ position: 'absolute', border: '2px dashed #f59e0b', width: '70px', height: '80px', left: '68%', top: '35%', borderRadius: '4px' }}>
+                                    <span style={{ background: '#f59e0b', color: '#000', fontSize: '10px', padding: '2px 4px', position: 'absolute', top: '-18px', left: '-2px', whiteSpace: 'nowrap', fontWeight: 'bold' }}>Bicycle 85%</span>
                                 </div>
                             </div>
                         </div>
