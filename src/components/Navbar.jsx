@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import profilePhoto from '../assets/profile-photo.png';
 
 function Navbar() {
     const [scrolled, setScrolled] = useState(false);
@@ -26,19 +25,9 @@ function Navbar() {
     return (
         <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
             <div className="nav-container">
-                <a href="#" className="nav-logo" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-                    <img 
-                        src={profilePhoto} 
-                        alt="Profile Diagram" 
-                        style={{ 
-                            width: '45px', 
-                            height: '45px', 
-                            borderRadius: '50%', 
-                            objectFit: 'cover',
-                            border: '2px solid var(--accent)',
-                            boxShadow: '0 0 10px rgba(var(--accent-rgb), 0.3)'
-                        }} 
-                    />
+                <a href="#" className="nav-logo">
+                    <span className="logo-text">AM</span>
+                    <span className="logo-dot"></span>
                 </a>
                 <div className={`nav-menu ${menuOpen ? 'active' : ''}`}>
                     {navLinks.map((link) => (
