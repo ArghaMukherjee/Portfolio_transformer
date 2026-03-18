@@ -1339,7 +1339,19 @@ img {
     }
 
     .hero-visual {
-        display: none;
+        order: -1;
+    }
+
+    .profile-card {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+    }
+
+    .profile-image {
+        width: 140px;
+        height: 140px;
+        margin: 30px auto 0;
     }
 
     .about-content {

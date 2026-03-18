@@ -207,7 +207,15 @@ body {
     }
 
     .profile-card {
-        transform: scale(0.85);
+        width: 180px;
+        height: 180px;
+        margin: 0 auto;
+    }
+
+    .profile-image {
+        width: 130px;
+        height: 130px;
+        margin: 25px auto 0;
     }
 }
 
@@ -232,6 +240,17 @@ body {
     .stat-item {
         flex: 1 1 30%;
         min-width: 80px;
+    }
+
+    .profile-card {
+        width: 150px;
+        height: 150px;
+    }
+
+    .profile-image {
+        width: 110px;
+        height: 110px;
+        margin: 20px auto 0;
     }
 }
 
