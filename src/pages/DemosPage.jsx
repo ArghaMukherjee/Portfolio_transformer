@@ -19,8 +19,11 @@ function DemosPage() {
         // Handle hash navigation to specific demo
         if (location.hash) {
             const demoId = location.hash.replace('#', '');
-            // Dispatch custom event for AIDemos to handle
-            window.dispatchEvent(new CustomEvent('selectDemo', { detail: { demoId } }));
+            // Small delay to ensure AIDemos component has mounted and registered its listener
+            const timer = setTimeout(() => {
+                window.dispatchEvent(new CustomEvent('selectDemo', { detail: { demoId } }));
+            }, 100);
+            return () => clearTimeout(timer);
         }
     }, [location.hash]);
 

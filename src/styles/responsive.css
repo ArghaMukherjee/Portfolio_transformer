@@ -451,17 +451,36 @@ body {
    =================================== */
 @media (max-width: 480px) {
     .chatbot-container {
-        width: calc(100vw - 24px);
+        bottom: 16px;
         right: 12px;
-        bottom: 80px;
-        max-height: 70vh;
+        z-index: 99999;
     }
 
     .chatbot-toggle {
-        width: 50px;
-        height: 50px;
+        width: 52px;
+        height: 52px;
+    }
+
+    .chatbot-window {
+        position: fixed;
+        bottom: 80px;
         right: 12px;
-        bottom: 12px;
+        left: 12px;
+        width: auto;
+        max-height: 70vh;
+    }
+}
+
+@media (max-width: 768px) and (min-width: 481px) {
+    .chatbot-container {
+        bottom: 20px;
+        right: 16px;
+        z-index: 99999;
+    }
+
+    .chatbot-window {
+        width: 340px;
+        max-height: 60vh;
     }
 }
 
